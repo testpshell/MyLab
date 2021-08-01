@@ -24,12 +24,13 @@ pipeline{
         }
 
         //Stage3 : Publish the artifacts to Nexus
-        stage('Publish to Nexus')
+        stage('Publish to Nexus'){
             steps{
                 nexusArtifactUploader artifacts: [[artifactId: 'DevOpsLab', classifier: '', file: 'target/DevOpsLab-0.0.5-SNAPSHOT.war', type: 'war']], credentialsId: '9028e13f-7ee4-4909-a2f3-f8cdbb0efb64', groupId: 'com.devopslab', nexusUrl: '172.20.10.144:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'DevopsLab-SNAPSHOT', version: '0.0.5-SNAPSHOT'
             }
+        }
 
-        // Stage3 : Publish the source code to Sonarqube
+        // Stage4 : Publish the source code to Sonarqube
         stage ('Sonarqube Analysis'){
             steps {
                 echo ' Source code published to Sonarqube for SCA......'
