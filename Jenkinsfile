@@ -5,9 +5,9 @@ pipeline{
         maven 'maven'
     }
     environment{
-        artifactId = readMavenPom().getArtifactId()
-        version = readMavenPom().getVersion()
-        name = readMavenPom().getName()
+        ArtifactId = readMavenPom().getArtifactId()
+        Version = readMavenPom().getVersion()
+        Name = readMavenPom().getName()
 
     }
 
@@ -36,7 +36,15 @@ pipeline{
             }
         }
 
-        //Stage4 : Publish the artifacts to Nexus
+        //Stage4 : print the ENV variables
+        stage ('Print the ENV variables'){
+            steps {
+                echo "Artifact ID is '${ArtifactId}'"
+                echo "Version is '${Version}'"
+                echo "Name ID is '${Name}'"
+            }
+
+        }
 
     
         
